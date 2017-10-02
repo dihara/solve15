@@ -8,7 +8,7 @@ have been visited and how many nodes are left to expand (the frontier).
 Usage
 -----
 To run the program
-    python solve15.py
+    python solve15bfs.py
     
 You will be prompted to introduce the puzzle that must be solved. This should be done by writing the numbers in the puzzle
 starting on the first column of row one. Every number must be separated by a space. The BLANK is represented by an asterisk.
