@@ -1,3 +1,5 @@
+import mem
+
 #here PUZZLE_SIZE is the number of columns or rows in the puzzle (i.e. for 15 puzzle PUZZLE_SIZE = 16)
 PUZZLE_SIZE = 4
 BLANK_SQUARE = "*"
@@ -74,7 +76,7 @@ def solved_puzzle(puzzle):
                 
     return is_solved
     
-#output a matrix representation of the node in the screen
+#output a matrix representation of the node to the screen
 def print_puzzle(s):
     i = 0
     c = 0
@@ -250,3 +252,20 @@ def print_complete_solution(first_node, solution_stack):
             print("Move the BLANK UP to get")
             print_puzzle(next_move)
     print("SOLVED!")
+    
+    
+#Perform Depth Limited Search
+def DLS(node, depth):
+    if (depth == 0) and solved_puzzle(node):
+        return node
+        
+    if (depth > 0):
+        children = get_children(node)
+        #memory tracking for each children created
+        mem.global_memory_usage = mem.global_memory_usage + len(children) * mem.puzzle_mem
+        for child in children:
+            found = DLS(child, depth - 1)
+            if (found != None):
+                return found
+                
+    return None
